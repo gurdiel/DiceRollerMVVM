@@ -1,8 +1,9 @@
-package com.mpd.pmdm.dicerollerconstraintlayout
+package com.mpd.pmdm.dicerollerconstraintlayout.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mpd.pmdm.dicerollerconstraintlayout.ui.views.Dice
 
 class TwoDicesViewModel(val numSides: Int): ViewModel() {
 
