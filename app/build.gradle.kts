@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.mpd.pmdm.dicerollerconstraintlayout"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.mpd.pmdm.dicerollerconstraintlayout"
@@ -41,10 +41,10 @@ android {
 
 dependencies {
     val activity_version = "1.6.1"
-
     val room_version= "2.6.1"
-
+    implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.room:room-runtime:2.6.1")
+    ksp("com.example:processors")
     ksp("androidx.room:room-ktx:2.6.1")
     implementation("androidx.activity:activity-ktx:$activity_version")
     implementation("androidx.core:core-ktx:1.9.0")
