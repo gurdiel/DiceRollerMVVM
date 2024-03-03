@@ -40,8 +40,10 @@ android {
 }
 
 dependencies {
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
     val activity_version = "1.6.1"
-    val room_version= "2.6.1"
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
