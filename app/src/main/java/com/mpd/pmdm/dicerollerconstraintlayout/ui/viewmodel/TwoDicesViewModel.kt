@@ -20,6 +20,9 @@ class TwoDicesViewModel(val numSides: Int, val repository: LocalRepository): Vie
     val currentSideDice1: LiveData<Int> = dice1.currentSide
     val currentSideDice2: LiveData<Int> = dice2.currentSide
 
+    //Listado de lanzamientos desde el repositorio
+    val allDiceRolls = repository.allRolls
+
     fun rollDices(){
         dice1.roll()
         dice2.roll()

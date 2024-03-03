@@ -2,19 +2,14 @@ package com.mpd.pmdm.dicerollerconstraintlayout.ui.views
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.mpd.pmdm.dicerollerconstraintlayout.R
 import com.mpd.pmdm.dicerollerconstraintlayout.data.database.DiceRolls
 import com.mpd.pmdm.dicerollerconstraintlayout.databinding.FragmentDiceRollItemBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyDiceRollItemRecyclerViewAdapter(
-    private val values: List<DiceRolls>
+    private var diceRollsList: List<DiceRolls>
 ) : RecyclerView.Adapter<MyDiceRollItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,20 +24,25 @@ class MyDiceRollItemRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-       // holder.idView.text = item.id
-        //holder.contentView.text = item.content
+        val item = diceRollsList[position]
+        holder.bindData(item)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = diceRollsList.size
 
-    inner class ViewHolder(binding: FragmentDiceRollItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+    inner class ViewHolder(val binding: FragmentDiceRollItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+        fun bindData(item:DiceRolls){
+            binding.idRollItem.text = item.id.toString()
+            binding.dice1ResultItem.text = item.dice1Result.toString()
+            binding.dice2ResultItem.text = item.dice2Result.toString()
+            //timeStamp pasamos milisegundos.
+            binding.rollDateItem.text = SimpleDateFormat("dd/MM/y h:mm a").format(Date(item.timestamp))
         }
+    }
+
+    fun updateList(newList: List<DiceRolls>){
+        diceRollsList = newList
+        notifyDataSetChanged() //No es eficiente porque actualiza toda la lista aunque solo entre un elemento.
     }
 }

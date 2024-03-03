@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.mpd.pmdm.dicerollerconstraintlayout.R
 import com.mpd.pmdm.dicerollerconstraintlayout.databinding.FragmentDiceRollListBinding
+import com.mpd.pmdm.dicerollerconstraintlayout.ui.viewmodel.TwoDicesViewModel
+import com.mpd.pmdm.dicerollerconstraintlayout.ui.viewmodel.TwoDicesViewModelFactory
 
 /**
  * A fragment representing a list of Items.
@@ -19,6 +22,8 @@ class DiceRollListFragment : Fragment() {
     private var columnCount = 1
     private var _binding: FragmentDiceRollListBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: TwoDicesViewModel by activityViewModels { TwoDicesViewModelFactory(6)  }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +40,17 @@ class DiceRollListFragment : Fragment() {
 
         // Set the adapter
         val view: RecyclerView = binding.list //Recycler View
+        val rollsAdapter =  MyDiceRollItemRecyclerViewAdapter(emptyList())
         with(view) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = MyDiceRollItemRecyclerViewAdapter(emptyList())
+            adapter = rollsAdapter
         }
 
+        viewModel.allDiceRolls.observe(viewLifecycleOwner){
+            rollsAdapter.updateList(it)
+        }
     }
 }
