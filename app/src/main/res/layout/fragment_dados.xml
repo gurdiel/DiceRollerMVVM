@@ -11,9 +11,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/roll"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnClear"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnRoll"
+        app:layout_constraintTop_toTopOf="@id/btnRoll"
+        android:backgroundTint="?attr/colorError"
+        />
 
 
     <!-- otra opcion para centrar los dados horizontalmente:
@@ -28,8 +40,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_height="200dp"
         android:layout_width="wrap_content"
+        android:layout_height="200dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

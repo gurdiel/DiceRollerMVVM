@@ -7,4 +7,9 @@
     <string name="dado_1">Dado 1</string>
     <string name="dado_2">Dado 2</string>
     <string name="fecha">Fecha:</string>
+    <string name="clear">Clear</string>
+    <string name="clear_dialog_title">Limpieza de datos</string>
+    <string name="clear_dialog_msg">Se borrarán todos estos registros de tiradas.\n¿Desea continuar?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="aceptar">Confirmar</string>
 </resources>

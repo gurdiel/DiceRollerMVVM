@@ -15,4 +15,7 @@ class LocalRepository(private val dataBase:RollsDatabase) {
         val diceRollEntity = DiceRolls(dice1Result = dice1Result, dice2Result = dice2Result)
         dao.insertDiceRoll(diceRollEntity)
     }
+
+    suspend fun clearRolls() = dao.clearDiceRolls()
+
 }

@@ -36,8 +36,15 @@ class TwoDicesViewModel(val numSides: Int, val repository: LocalRepository): Vie
             if(cSD1 != null && cSD2 != null)
                 repository.insertRoll(cSD1.toByte(),cSD2.toByte())
         }
-
     }
+
+
+        fun clearRolls() {
+            viewModelScope.launch{
+                repository.clearRolls()
+            }
+        }
+
 }
 
 class TwoDicesViewModelFactory(val caras: Int): ViewModelProvider.Factory{
